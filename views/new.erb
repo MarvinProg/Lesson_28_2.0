@@ -1,14 +1,11 @@
-<h1>Hi people!</h1>
+<h1>Разместить новй пост</h1>
+<%= @content_text %>
 <form action="/new" method="POST">
-  <div class="mb-3">
-    <label for="exampleFormControlInput1" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-  </div>
   <br>
   <div class="mb-3">
-    <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    <label for="exampleFormControlTextarea1" class="form-label">Новый пост</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Введите ваш текст" name="content_text"></textarea>
   </div>
   <br>
-  <button type="submit" class="btn btn-success">Submit</button>
+  <button type="submit" class="btn btn-success">Отправить</button>
 </form>
