@@ -6,7 +6,7 @@ require 'sqlite3'
 
 def init_db
   @db_create = SQLite3::Database.new 'my_db.db'
-  @db_create.results_as_hash = true
+  @db_create.results_as_hash = true 
   return @db_create
 end
 
@@ -15,7 +15,12 @@ before do
 end
 
 configure do 
-
+  @db = init_db
+  @db.execute 'create table if not exists "Posts" (
+    "id" integer primary key autoincrement,
+    "date_create" date, 
+    "content" text 
+  )'
 end
 
 get '/' do
