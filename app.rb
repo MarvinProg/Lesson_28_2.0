@@ -33,7 +33,18 @@ get '/new' do
 end
 
 post '/new' do 
+  @db = init_db
   @content_text = params[:content_text]
+
+  validate_error = {
+    content_text: "Введите текст поста." 
+  }
+  if @content_text.length <= 0 
+    @error = validate_error[:content_text]
+    erb :new
+  end 
+
+  @db.execute('insert into Posts (content, date_create) values (?, datetime())', [@content_text])
 
   erb :new
 end
