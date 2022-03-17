@@ -1,1 +1,16 @@
 <h1>Главная страница</h1>
+<%# <%= @db_result %> 
+  <table class="table">
+  <% @db_result.each do |item| %>
+    <tr>
+      <td>
+        <br>
+        <%= item['content'] %>
+        <br>
+        <br>
+        <span>Добавлен в: </span><%= item['date_create'] %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
