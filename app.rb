@@ -51,3 +51,8 @@ post '/new' do
 
   erb :new
 end
+
+get "/details/:post_id" do
+  post_id = params[:id]
+  erb :details
+end
