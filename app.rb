@@ -53,6 +53,11 @@ post '/new' do
 end
 
 get "/details/:post_id" do
-  post_id = params[:id]
+  post_id = params[:post_id]
+
+  @db = init_db
+  id_db = @db.execute('select * from Posts where id = ?', [post_id])
+  @range = id_db[0]
+
   erb :details
 end
