@@ -3,7 +3,7 @@
 <table class="table">
     <tr>
       <td>
-        <%= @range['content_text'] %>
+        <%= @range['content_db'] %>
         <br>
         <br>
         <%# <%= @range %> 
@@ -18,9 +18,9 @@
   <br>
   <div class="mb-3">
     <label for="exampleFormControlTextarea1" class="form-label">Добавить комментарий</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Введите текст комментария" name="content_text"></textarea>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Введите текст комментария" name="comment_text"></textarea>
   </div>
   <br>
   <button type="submit" class="btn btn-success">Отправить</button>
 </form>
-<%= @content_text %>
+<%# <%= @content_text %> 

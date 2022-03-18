@@ -16,10 +16,18 @@ end
 
 configure do 
   @db = init_db
+
   @db.execute 'create table if not exists "Posts" (
     "id" integer primary key autoincrement,
     "date_create" date, 
-    "content" text 
+    "content_db" text 
+  )'
+
+  @db.execute 'create table if not exists "Comments" (
+    "id" integer primary key autoincrement,
+    "date_create" date, 
+    "comment_db" text, 
+    "comment_id" integer
   )'
 end
 
@@ -48,7 +56,7 @@ post '/new' do
     erb :new
   end 
 
-  @db.execute('insert into Posts (content, date_create) values (?, datetime())', [@content_text])
+  @db.execute('insert into Posts (content_db, date_create) values (?, datetime())', [@content_text])
 
   erb :new
 end
@@ -63,10 +71,18 @@ get "/details/:post_id" do
   erb :details
 end
 
-post "/details/:post_id" do 
-  post_id = params[:post_id]
-  @content_text = params[:content_text]
+post "/details/:comment_id" do 
+  comment_id = params[:comment_id]
+  @comment_text = params[:comment_text]
 
-  # erb :details
-  erb "Your comments #{@content_text}"
+  @db = init_db
+  @db.execute('insert into Comments (comment_db, comment_id, date_create) values (?, ?, datetime())', [@comment_text, comment_id])
+
+  redirect to('/details/' + comment_id) 
+
+  # erb "Your comments #{@comment_text}, id: #{comment_id}"
 end
+
+# get '/details/:comment_id' do 
+
+# end
