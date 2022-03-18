@@ -1,4 +1,4 @@
-<h2>Детали</h2>
+<h4 class="header__page">Детали</h4>
 
 <table class="table">
     <tr>
@@ -11,3 +11,15 @@
       </td>
     </tr>
 </table>
+
+<h4 class="header__page">Комментарий</h4>
+<%# исправить форму! %>
+<form action="/details/<%= @range['id'] %>" method="POST">
+  <br>
+  <div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label">Добавить комментарий</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Введите текст комментария" name="content_text"></textarea>
+  </div>
+  <br>
+  <button type="submit" class="btn btn-success">Отправить</button>
+</form>

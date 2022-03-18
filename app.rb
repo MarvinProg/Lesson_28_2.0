@@ -42,6 +42,7 @@ post '/new' do
   validate_error = {
     content_text: "Введите текст поста." 
   }
+  
   if @content_text.length <= 0 
     @error = validate_error[:content_text]
     erb :new
@@ -58,6 +59,12 @@ get "/details/:post_id" do
   @db = init_db
   id_db = @db.execute('select * from Posts where id = ?', [post_id])
   @range = id_db[0]
+
+  erb :details
+end
+
+post "/details/:post_id" do 
+  post_id = params[:post_id]
 
   erb :details
 end
