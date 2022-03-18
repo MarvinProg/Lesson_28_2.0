@@ -42,7 +42,7 @@ post '/new' do
   validate_error = {
     content_text: "Введите текст поста." 
   }
-  
+
   if @content_text.length <= 0 
     @error = validate_error[:content_text]
     erb :new
@@ -65,6 +65,8 @@ end
 
 post "/details/:post_id" do 
   post_id = params[:post_id]
+  @content_text = params[:content_text]
 
-  erb :details
+  # erb :details
+  erb "Your comments #{@content_text}"
 end
