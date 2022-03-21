@@ -27,7 +27,7 @@ configure do
     "id" integer primary key autoincrement,
     "date_create" date, 
     "comment_db" text, 
-    "comment_id" integer
+    "post_id" integer
   )'
 end
 
@@ -68,21 +68,21 @@ get "/details/:post_id" do
   id_db = @db.execute('select * from Posts where id = ?', [post_id])
   @range = id_db[0]
 
+  @comments_select = @db.execute('select * from Comments where post_id = ? order by id', [post_id])
+  # @range
+
   erb :details
 end
 
-post "/details/:comment_id" do 
-  comment_id = params[:comment_id]
+post "/details/:post_id" do 
+  post_id = params[:post_id]
   @comment_text = params[:comment_text]
 
   @db = init_db
-  @db.execute('insert into Comments (comment_db, comment_id, date_create) values (?, ?, datetime())', [@comment_text, comment_id])
+  @db.execute('insert into Comments (comment_db, post_id, date_create) values (?, ?, datetime())', [@comment_text, post_id])
 
-  redirect to('/details/' + comment_id) 
+  redirect to('/details/' + post_id) 
 
   # erb "Your comments #{@comment_text}, id: #{comment_id}"
 end
 
-# get '/details/:comment_id' do 
-
-# end

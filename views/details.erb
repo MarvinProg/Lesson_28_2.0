@@ -13,7 +13,21 @@
 </table>
 
 <h4 class="header__page">Комментарий</h4>
-<%# исправить форму! %>
+
+<% @comments_select.each do |item| %>
+  <tr>
+    <td>
+      <br>
+      <%= item['comment_db'] %>
+      <br>
+      <br>
+      <span>Добавлен в: </span><%= item['date_create'] %>
+      <br>
+      <a href="/details/<%= item['id'] %>">Комментарий</a>
+    </td>
+  </tr>
+<% end %>
+
 <form action="/details/<%= @range['id'] %>" method="POST">
   <br>
   <div class="mb-3">
